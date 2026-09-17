@@ -1,5 +1,5 @@
 {
-  description = "A custom Python app and NixOS service";
+  description = "EZ alarm NixOS service";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

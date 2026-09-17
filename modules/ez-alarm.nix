@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ezAlarm, ... }:
+{ config, lib, pkgs, ezAlarmPackage, ... }:
 
 with lib;
 
@@ -57,11 +57,11 @@ in {
     systemd.timers."ez-alarm" = {
       description = "Run ez-alarm periodically";
       wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnBootSec = cfg.timerOnBootSec;
-          OnUnitActiveSec = cfg.timerOnUnitActiveSec;
-          Unit = "ez-alarm.service";
-        };
+      timerConfig = {
+        OnBootSec = cfg.timer.onBootSec;
+        OnUnitActiveSec = cfg.timer.onUnitActiveSec;
+        Unit = "ez-alarm.service";
+      };
     };
 
     systemd.services."ez-alarm" = {
@@ -80,7 +80,7 @@ in {
         User = "root";
         StateDirectory = "ez-alarm";
         StateDirectoryMode = "0750";
-        ExecStart = "${ezAlarm}/bin/ez-alarm";
+        ExecStart = "${ezAlarmPackage}/bin/ez-alarm";
       };
       wantedBy = [ "multi-user.target" ];
     };
