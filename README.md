@@ -38,6 +38,8 @@ sudo systemctl enable --now ez-alarm.timer
 | ------------------------- | --------------------------------------------------------- |
 | `ROOM_ID`               | 要监控的 Bilibili 直播间 ID。                             |
 | `BARK_URL`              | Bark 兼容服务的基础 URL，脚本会请求`${BARK_URL}/post`。 |
+| `BARK_SOUND`            | Bark 通知的声音名称，默认为 `alarm`。                     |
+| `BARK_VOLUME`           | Bark 通知的音量，范围 0-10，默认为 5。                     |
 | `CLOUDFLARE_ACCOUNT_ID` | D1 数据库所属的 Cloudflare Account ID。                   |
 | `BARK_D1_DATABASE_ID`   | D1 数据库 ID，不是数据库名称。                            |
 | `CLOUDFLARE_API_TOKEN`  | 具备`Account > D1 > Edit` 权限的 API Token。            |
@@ -74,6 +76,8 @@ systemctl list-timers ez-alarm.timer
             enable = true;
             roomId = "1713546334";
             barkUrl = "https://your-bark-server.example";
+            barkSound = "alarm";
+            barkVolume = "5";
             cloudflareAccountId = "your-cloudflare-account-id";
             cloudflareBarkD1DatabaseId = "your-bark-d1-database-id";
             cloudflareApiToken = "your-cloudflare-api-token";

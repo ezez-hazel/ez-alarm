@@ -139,12 +139,12 @@ def send_notification(room: dict, device_keys: list[str]) -> None:
     payload = {
         "title": room["name"],
         "body": room["title"],
-        "sound": "alarm",
+        "sound": os.environ.get("BARK_SOUND", "alarm"),
         "level": "critical",
         "icon": room["face"],
         "url": f"bilibili://live/{room['rid']}",
         "call": "1",
-        "volume": "1",
+        "volume": os.environ.get("BARK_VOLUME", "5"),
         "device_keys": device_keys,
     }
     request = Request(

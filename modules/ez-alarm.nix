@@ -18,6 +18,18 @@ in {
       description = "Bark-compatible server base URL. The script posts JSON to ${BARK_URL}/post.";
     };
 
+    barkSound = mkOption {
+      type = types.str;
+      default = "alarm";
+      description = "Bark notification sound.";
+    };
+
+    barkVolume = mkOption {
+      type = types.str;
+      default = "5";
+      description = "Bark notification volume (0-10).";
+    };
+
     cloudflareAccountId = mkOption {
       type = types.str;
       description = "Cloudflare account containing the D1 database.";
@@ -71,6 +83,8 @@ in {
       environment = {
         ROOM_ID = cfg.roomId;
         BARK_URL = cfg.barkUrl;
+        BARK_SOUND = cfg.barkSound;
+        BARK_VOLUME = cfg.barkVolume;
         CLOUDFLARE_ACCOUNT_ID = cfg.cloudflareAccountId;
         BARK_D1_DATABASE_ID = cfg.cloudflareBarkD1DatabaseId;
         CLOUDFLARE_API_TOKEN = cfg.cloudflareApiToken;
