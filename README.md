@@ -37,6 +37,7 @@ sudo systemctl enable --now ez-alarm.timer
 | 变量                      | 说明                                                      |
 | ------------------------- | --------------------------------------------------------- |
 | `ROOM_ID`               | 要监控的 Bilibili 直播间 ID。                             |
+| `LOCK_TTL`              | 锁文件的 TTL（秒），用于防止重复提醒，默认为 14400（4 小时）。 |
 | `BARK_URL`              | Bark 兼容服务的基础 URL，脚本会请求`${BARK_URL}/post`。 |
 | `BARK_SOUND`            | Bark 通知的声音名称，默认为 `alarm`。                     |
 | `BARK_VOLUME`           | Bark 通知的音量，范围 0-10，默认为 5。                     |
@@ -75,6 +76,7 @@ systemctl list-timers ez-alarm.timer
           services.ez-alarm = {
             enable = true;
             roomId = "1713546334";
+            lockTtl = 14400;
             barkUrl = "https://your-bark-server.example";
             barkSound = "alarm";
             barkVolume = "5";

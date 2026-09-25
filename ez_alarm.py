@@ -16,7 +16,7 @@ from urllib.request import Request, urlopen
 ROOM_API = "https://api.live.bilibili.com/room/v1/Room/get_info"
 USER_API = "https://api.bilibili.com/x/web-interface/card"
 DEFAULT_LOCK_FILE = "/run/lock/ez-alarm.lock"
-LOCK_TTL_SECONDS = 4 * 60 * 60
+LOCK_TTL_SECONDS = int(os.environ.get("LOCK_TTL", "14400"))
 POLL_INTERVAL_SECONDS = 300
 logger = logging.getLogger(__name__)
 

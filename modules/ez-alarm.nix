@@ -13,6 +13,12 @@ in {
       description = "Bilibili live room to monitor.";
     };
 
+    lockTtl = mkOption {
+      type = types.int;
+      default = 14400;
+      description = "Lock TTL(seconds) to prevent duplicate alarms.";
+    };
+
     barkUrl = mkOption {
       type = types.str;
       description = "Bark-compatible server base URL. The script posts JSON to ${BARK_URL}/post.";
@@ -82,6 +88,7 @@ in {
       after = [ "network-online.target" ];
       environment = {
         ROOM_ID = cfg.roomId;
+        LOCK_TTL = cfg.lockTtl;
         BARK_URL = cfg.barkUrl;
         BARK_SOUND = cfg.barkSound;
         BARK_VOLUME = cfg.barkVolume;
