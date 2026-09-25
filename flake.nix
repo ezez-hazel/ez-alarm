@@ -2,7 +2,7 @@
   description = "EZ alarm NixOS service";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
   };
 
   outputs = { self, nixpkgs }:
@@ -11,7 +11,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
 
       # 1. 定义 Python 环境
-      pythonEnv = pkgs.python3;
+      pythonEnv = pkgs.python315;
 
       # 2. 将根目录的项目打包为一个可执行程序
       ezAlarm = pkgs.stdenv.mkDerivation {
