@@ -14,7 +14,7 @@ in {
     };
 
     lockTtl = mkOption {
-      type = types.int;
+      type = types.coercedTo types.int toString types.str;
       default = 14400;
       description = "Lock TTL(seconds) to prevent duplicate alarms.";
     };
