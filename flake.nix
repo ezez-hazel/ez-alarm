@@ -11,7 +11,9 @@
       pkgs = nixpkgs.legacyPackages.${system};
 
       # 1. 定义 Python 环境
-      pythonEnv = pkgs.python315;
+      pythonEnv = pkgs.python315.withPackages (pythonPackages: [
+        pythonPackages.httpx
+      ]);
 
       # 2. 将根目录的项目打包为一个可执行程序
       ezAlarm = pkgs.stdenv.mkDerivation {

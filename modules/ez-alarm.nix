@@ -36,6 +36,12 @@ in {
       description = "Bark notification volume (0-10).";
     };
 
+    maxConcurrency = mkOption {
+      type = types.coercedTo types.int toString types.str;
+      default = 50;
+      description = "Maximum number of concurrent requests to the Bark Worker.";
+    };
+
     cloudflareAccountId = mkOption {
       type = types.str;
       description = "Cloudflare account containing the D1 database.";
@@ -92,6 +98,7 @@ in {
         BARK_URL = cfg.barkUrl;
         BARK_SOUND = cfg.barkSound;
         BARK_VOLUME = cfg.barkVolume;
+        MAX_CONCURRENCY = cfg.maxConcurrency;
         CLOUDFLARE_ACCOUNT_ID = cfg.cloudflareAccountId;
         BARK_D1_DATABASE_ID = cfg.cloudflareBarkD1DatabaseId;
         CLOUDFLARE_API_TOKEN = cfg.cloudflareApiToken;
